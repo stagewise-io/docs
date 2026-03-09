@@ -1,0 +1,74 @@
+---
+title: "Custom providers"
+description: "Connect stagewise to self-hosted models, enterprise proxies, or alternative API providers."
+---
+
+Custom endpoints let you route inference requests to any service that implements a supported API specification. This covers self-hosted models, enterprise proxy servers, and cloud platforms like Azure OpenAI or AWS Bedrock.
+
+## Creating a custom endpoint
+
+<Steps>
+  <Step title="Open Models & Providers">
+    Navigate to **Settings → Agent → Models & Providers** and scroll to the **Custom Endpoints** section.
+  </Step>
+  <Step title="Add a new endpoint">
+    Click **Add endpoint** and fill in the required fields.
+  </Step>
+  <Step title="Configure the endpoint">
+    Provide:
+    - **Name** — A display name for this endpoint
+    - **API spec** — Which API protocol the endpoint implements
+    - **Base URL** — The full base URL of the endpoint
+    - **API key** (optional) — Authentication key for the endpoint
+  </Step>
+</Steps>
+
+## Supported API specifications
+
+| Spec | Description | Example services |
+|------|-------------|-----------------|
+| `anthropic` | Anthropic Messages API | Self-hosted Claude, any Anthropic-compatible proxy |
+| `openai-chat-completions` | OpenAI Chat Completions | vLLM, Ollama, LiteLLM, Together AI |
+| `openai-responses` | OpenAI Responses API | Direct OpenAI-compatible responses endpoints |
+| `google` | Google Generative AI | Self-hosted Gemini-compatible services |
+| `azure` | Azure OpenAI | Azure OpenAI Service |
+| `amazon-bedrock` | AWS Bedrock | Amazon Bedrock (requires region + secret key) |
+| `google-vertex` | Google Vertex AI | Vertex AI (requires project ID + location + credentials) |
+
+## Cloud provider configuration
+
+### Azure OpenAI
+
+Azure endpoints require additional fields:
+- **Resource name** — Your Azure OpenAI resource name
+- **API version** — The API version string (e.g. `2024-02-01`)
+
+### Amazon Bedrock
+
+Bedrock endpoints require:
+- **Region** — AWS region (e.g. `us-east-1`)
+- **API key** — AWS Access Key ID
+- **Secret key** — AWS Secret Access Key
+
+### Google Vertex AI
+
+Vertex endpoints require:
+- **Project ID** — Your GCP project ID
+- **Location** — GCP region (e.g. `us-central1`)
+- **Google credentials** — Service account JSON credentials
+
+## Model ID mapping
+
+Some custom endpoints use different model identifiers than the official APIs. Use the **Model ID Mapping** field to remap built-in model IDs to the IDs your endpoint expects.
+
+For example, if your Ollama instance names Claude as `claude-v2`:
+
+```json
+{
+  "claude-sonnet-4-6": "claude-v2"
+}
+```
+
+## Using a custom endpoint
+
+After creating the endpoint, go to the provider configuration for any provider and select **Custom endpoint** mode. Choose your endpoint from the dropdown. All models for that provider will route through the custom endpoint.

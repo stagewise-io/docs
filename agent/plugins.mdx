@@ -1,0 +1,42 @@
+---
+title: "Plugins"
+description: "Extend the stagewise agent with custom plugins."
+---
+
+Plugins add new capabilities to the agent — custom skills, credential types, and interactive apps that run inside the chat sidebar.
+
+Open plugin management at **Settings → Agent → Plugins**.
+
+## Plugin structure
+
+Each plugin consists of:
+
+- **Definition** — Name, description, and metadata
+- **Skills** — Optional structured instructions in `SKILL.md` files
+- **Credentials** — Optional credential type definitions the plugin needs (e.g. API tokens)
+- **Apps** — Optional interactive UIs that render inside the sidebar
+
+## Viewing plugins
+
+The plugins settings page shows all installed plugins with:
+- Plugin name and description
+- List of skills the plugin provides
+- Required credentials and their configuration status
+
+## Plugin credentials
+
+Some plugins require credentials (like API keys or access tokens). When a plugin declares a credential type, you can configure the credential in the plugin settings.
+
+Credential fields can be:
+- **Secret** — Encrypted using Electron's `safeStorage`, never exposed in plaintext
+- **Non-secret** — Stored as plain text (e.g. project IDs, usernames)
+
+## Plugin apps
+
+Plugins can ship interactive mini-apps that render in an iframe within the chat sidebar. The agent can open these apps and exchange messages with them via `postMessage`.
+
+This enables plugins to provide rich UI experiences — for example, a Figma plugin could show a node preview panel, or a database plugin could display query results.
+
+## Built-in plugins
+
+stagewise ships with bundled plugins in the `bundled/plugins` directory. These are always available and cannot be removed. Additional plugins can be installed from the community or created by the user.

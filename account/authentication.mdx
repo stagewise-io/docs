@@ -1,0 +1,58 @@
+---
+title: "Authentication & account"
+description: "Sign in, manage your subscription, and monitor usage."
+---
+
+Open account settings at **Settings → Account**.
+
+## Signing in
+
+stagewise uses passwordless email authentication:
+
+<Steps>
+  <Step title="Enter your email">
+    Type your email address in the sign-in form.
+  </Step>
+  <Step title="Receive OTP">
+    A one-time password (OTP) is sent to your email.
+  </Step>
+  <Step title="Enter the code">
+    Enter the 6-digit OTP to complete authentication.
+  </Step>
+</Steps>
+
+No password is needed. Each sign-in generates a fresh OTP.
+
+## Account details
+
+Once signed in, the account page displays:
+
+- **Email** — Your registered email address
+- **Plan** — Current subscription tier (e.g. Free, Pro)
+- **Status** — Whether the subscription is active
+- **Expiration** — When the current billing period ends
+- **Machine ID** — A unique identifier for this device
+
+## Usage tracking
+
+The usage section shows your current consumption across rate-limit windows:
+
+- **Credits** — Remaining prepaid balance (displayed as a dollar amount)
+- **Daily / Weekly / Monthly windows** — Percentage of your rate limit consumed in each window, with reset timers
+
+Usage bars show color-coded status:
+- Green — Under 80% consumed
+- Yellow — Between 80–100% consumed
+- Red — Rate limit reached
+
+## Console
+
+Click **Open Console** to open the [stagewise console](https://console.stagewise.io) in a new tab. The console provides full account management including billing, subscription changes, and detailed usage history.
+
+## Signing out
+
+Click **Sign out** to deauthenticate this device. Your settings, workspaces, and chat history are preserved locally — signing back in restores access to proxy-based inference.
+
+## Using stagewise without an account
+
+You can use stagewise without signing in by configuring [BYOK (Bring Your Own Key)](/agent/byok-setup). In BYOK mode, requests go directly to the provider's API using your key — no stagewise account needed.

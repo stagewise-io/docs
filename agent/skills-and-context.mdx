@@ -1,0 +1,89 @@
+---
+title: "Skills & context"
+description: "Configure workspace-specific skills and context files for the agent."
+---
+
+Skills and context files give the agent deeper understanding of your project. They are configured per workspace in **Settings → Agent → Skills & Context files**.
+
+## Context files
+
+### WORKSPACE.md
+
+When you connect a workspace, stagewise can auto-generate a `WORKSPACE.md` file in the `.stagewise/` directory. This file contains:
+
+- Project type, languages, and runtime
+- Package structure and dependency graph
+- Build scripts and CI configuration
+- Key files and their purposes
+- Architecture overview
+
+The agent reads this file automatically to understand your project structure.
+
+**Generating or updating WORKSPACE.md:**
+
+1. Open **Settings → Agent → Skills & Context files**
+2. Select the workspace
+3. Click **Generate** (or **Regenerate** if one exists)
+
+The file is written to `.stagewise/WORKSPACE.md` in your project. You can commit it to source control or add it to `.gitignore`.
+
+### AGENTS.md
+
+An optional `AGENTS.md` file in your project root provides custom instructions to the agent. Use this for:
+
+- Coding conventions and style rules
+- Preferred libraries and patterns
+- Project-specific terminology
+- Build/test commands
+
+The agent respects `AGENTS.md` when it's present, but it's opt-in — you enable it per workspace in the Skills & Context settings.
+
+<Tip>
+  `AGENTS.md` is a shared format compatible with other AI coding tools. Skills in `.stagewise/skills/` take precedence when there's a conflict.
+</Tip>
+
+## Skills
+
+Skills are structured instruction sets that extend the agent's capabilities for specific tasks. A skill is a folder with a `SKILL.md` file and optional supporting files.
+
+### Skill locations
+
+Skills are loaded from two places (in priority order):
+
+1. **`.stagewise/skills/`** — stagewise-exclusive skills (highest priority)
+2. **`.agents/skills/`** — Skills shared across multiple AI tools
+
+### Skill structure
+
+```
+.stagewise/skills/my-skill/
+├── SKILL.md          # Main instructions (required)
+├── references/       # Reference files the agent can read
+├── assets/           # Supporting assets
+└── scripts/          # Script examples (read-only, not executed)
+```
+
+### Creating a skill
+
+A `SKILL.md` file needs a name and description in its frontmatter:
+
+```markdown
+---
+name: "my-skill"
+description: "When and how the agent should use this skill."
+---
+
+# Instructions
+
+Your structured instructions here...
+```
+
+The `description` field tells the agent when to activate the skill. Be specific — e.g. "Use when creating or reviewing React components that use Zustand stores."
+
+### Enabling skills per workspace
+
+In **Settings → Agent → Skills & Context files**, you can toggle individual skills on or off for each workspace. Disabled skills are ignored by the agent even if present on disk.
+
+### Plugin skills
+
+Installed plugins can also provide skills. These appear in the skills list alongside workspace skills and can be toggled independently.

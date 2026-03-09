@@ -1,0 +1,47 @@
+---
+title: "Website permissions"
+description: "Manage site-specific permissions for camera, location, notifications, and more."
+---
+
+Open permission settings at **Settings → Browsing → Website Permissions**.
+
+## How permissions work
+
+When a website requests access to a device capability (like your camera or location), stagewise prompts you to allow or deny the request. Your choices are saved as per-site overrides.
+
+## Permission types
+
+stagewise manages the following permission types:
+
+| Permission | Description |
+|-----------|-------------|
+| Camera | Access to your webcam |
+| Microphone | Audio recording access |
+| Location | Geolocation data |
+| Notifications | Desktop notification delivery |
+| MIDI | MIDI device access |
+| Pointer Lock | Mouse pointer capture |
+| Open External | Opening links in external applications |
+| Idle Detection | Detecting whether the user is idle |
+| Clipboard (sanitized) | Sanitized clipboard read access |
+| Clipboard (read) | Full clipboard read access |
+| Storage Access | Third-party storage access |
+| Local Fonts | Access to locally installed fonts |
+
+## Managing permissions
+
+### View site-specific overrides
+
+The permissions page lists all sites that have saved permission choices. Each entry shows the origin (domain) and the permission status (Allowed or Blocked).
+
+### Change a permission
+
+Click on a permission entry to toggle it between **Allow** and **Block**. Changes take effect immediately for future requests from that site.
+
+### Remove an override
+
+Delete a saved permission choice to return to the default prompt behavior. The next time the site requests the permission, you'll be prompted again.
+
+## Default behavior
+
+For permissions without a saved override, stagewise shows a prompt when the site requests access. There are no global default "allow all" or "block all" toggles — each site must be configured individually.

@@ -1,0 +1,48 @@
+---
+title: "History & downloads"
+description: "Browse your navigation history and manage downloaded files."
+---
+
+## History
+
+Open your browsing history at **Settings → Browsing → History**.
+
+The history page shows all visited pages, organized by date and grouped by origin (domain). For each entry you can see:
+
+- Page title and URL
+- Visit time
+- Favicon
+
+### Searching history
+
+Use the search bar at the top of the history page to filter entries by title or URL. Results update as you type.
+
+### How history is stored
+
+History is stored locally in a SQLite database managed by the `HistoryService`. It records page visits, titles, and transition types. No browsing data is sent to external servers.
+
+## Downloads
+
+Open your downloads at **Settings → Browsing → Downloads**.
+
+The downloads page shows all downloaded files, organized by date. Each entry displays:
+
+- Filename and source URL
+- Download state (in progress, completed, cancelled, interrupted)
+- File size and progress
+- Download speed (for active downloads, shown as a real-time area chart)
+
+### Download actions
+
+For active downloads:
+- **Pause** / **Resume** — Control download progress
+- **Cancel** — Stop and remove the download
+
+For completed downloads:
+- **Open file** — Open the downloaded file
+- **Show in folder** — Reveal the file in your system file manager
+- **Delete** — Remove the download entry (does not delete the file from disk)
+
+### Searching downloads
+
+Use the search bar to filter downloads by filename. The list loads incrementally with pagination for performance.

@@ -1,0 +1,63 @@
+---
+title: "Custom models"
+description: "Add custom model definitions to use models not included in the built-in list."
+---
+
+stagewise ships with a curated list of built-in models, but you can define additional models that route to any configured endpoint — built-in or custom.
+
+## Adding a custom model
+
+<Steps>
+  <Step title="Open Models & Providers">
+    Navigate to **Settings → Agent → Models & Providers** and scroll to the **Custom Models** section.
+  </Step>
+  <Step title="Click Add model">
+    Click **Add model** to open the model editor dialog.
+  </Step>
+  <Step title="Configure the model">
+    Fill in:
+    - **Model ID** — The identifier your endpoint expects (e.g. `llama-3.3-70b`)
+    - **Display name** — A friendly name shown in the model selector
+    - **Description** — Optional description of the model's strengths
+    - **Context window size** — Maximum token context (default: 128,000)
+    - **Endpoint** — Which endpoint to route this model to
+    - **Extended thinking** — Whether the model supports chain-of-thought reasoning
+    - **Capabilities** — Toggle supported input/output modalities
+  </Step>
+</Steps>
+
+## Capabilities
+
+Each custom model can declare what it supports:
+
+**Input modalities:**
+- Text (always on)
+- Image
+- Video
+- Audio
+- File (PDF)
+
+**Output modalities:**
+- Text (always on)
+- Image
+- Audio
+- Video
+- File
+
+**Tool calling** — Whether the model can invoke tools. Required for file editing, workspace search, browser control, and other agent capabilities.
+
+<Warning>
+  If you disable tool calling, the agent cannot perform code edits or interact with the browser. It becomes a chat-only model.
+</Warning>
+
+## Custom model with a custom endpoint
+
+A typical workflow for self-hosted models:
+
+1. Create a [custom endpoint](/agent/custom-providers) pointing to your local server (e.g. `http://localhost:11434/v1` for Ollama)
+2. Create a custom model with the correct model ID for that server
+3. Select the custom model from the model picker in the chat sidebar
+
+## Provider options and headers
+
+Advanced users can specify raw **provider options** (JSON) and custom **HTTP headers** for a model. These are passed directly to the AI SDK and can control provider-specific behavior like reasoning effort, thinking budgets, or streaming options.

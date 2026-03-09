@@ -1,0 +1,34 @@
+---
+title: "DOM context selector"
+description: "Select elements from the browser to attach as context for the agent."
+---
+
+The DOM context selector lets you click on any visible element in the browser viewport and attach it as context for the agent. This gives the agent the exact HTML structure, computed styles, and component information it needs to make targeted changes.
+
+## Using the selector
+
+1. **Activate the selector** — Use the keyboard shortcut or click the selector button in the toolbar
+2. **Hover over elements** — Elements highlight as you move your mouse
+3. **Click to select** — Click an element to attach it. You can select multiple elements before sending a message
+4. **Send your message** — The selected elements appear as attachments in the chat input
+
+## What the agent receives
+
+When you select a DOM element, the agent gets:
+
+- **HTML structure** — The element's outer HTML and its position in the DOM tree
+- **Computed styles** — Key CSS properties as computed by the browser
+- **Bounding box** — Position and dimensions on the page
+- **Selector path** — A CSS selector that uniquely identifies the element
+
+This information is included as a structured attachment in the chat message, allowing the agent to understand exactly what you're pointing at and how to modify it.
+
+## Tips
+
+- **Be specific** — Select the most specific element relevant to your request. Selecting a button is better than selecting the entire page.
+- **Combine with text** — Pair your element selection with a natural language instruction: "Make this button larger and change its color to blue."
+- **Multiple selections** — Select several elements to show the agent a pattern or to request changes across multiple components.
+
+## Keyboard shortcut
+
+Toggle the DOM context selector with the keyboard shortcut. The default binding is configurable in the hotkey settings.

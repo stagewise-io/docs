@@ -1,0 +1,86 @@
+---
+title: "Diff review"
+description: "Review, accept, and reject code changes made by the agent."
+---
+
+When the agent edits files in your workspace, every change is tracked by the diff history system. You can review individual edits, accept or reject specific hunks, and undo/redo entire operations.
+
+## How it works
+
+The diff system uses a content-addressed, snapshot-based model inspired by git:
+
+1. **Before the first edit**, the current file content is saved as the **baseline**
+2. **Each agent edit** is recorded as a new snapshot
+3. **Diffs are computed** between the latest edit and the baseline
+4. **Accepting a hunk** updates the baseline to include it
+5. **Rejecting a hunk** reverts the file content for that section
+
+<Tip>
+  Agent edits are written to disk immediately. The diff system tracks what changed so you can undo anything — it does not block writes.
+</Tip>
+
+## Inline diff review
+
+The chat sidebar shows a compact diff preview after each tool call that modifies files. You can:
+
+- View added/removed line counts per file
+- Expand to see the full inline diff
+- Accept or reject individual hunks directly
+
+## Full diff review page
+
+For complex multi-file changes, open the dedicated **Diff Review** page. This page shows:
+
+- All modified files in a scrollable list
+- Full diff view with syntax highlighting for each file
+- Per-file accept/reject controls
+- Line statistics (additions and removals)
+- Collapsible/expandable diff sections
+
+### Opening diff review
+
+The diff review page opens automatically when you click the diff summary in the chat sidebar. It can also be opened from the footer status card that appears during active agent sessions.
+
+## Accepting and rejecting
+
+### Accept a hunk
+
+Click the **Accept** (✓) button on a hunk. This:
+- Updates the baseline to include the accepted change
+- The change remains on disk (it was already written)
+- The hunk disappears from the pending diff
+
+### Reject a hunk
+
+Click the **Reject** (✗) button on a hunk. This:
+- Reverts the file content on disk to the baseline for that hunk
+- The hunk is removed from the pending diff
+
+### Accept/reject all
+
+Use the file-level controls to accept or reject all hunks in a single file at once.
+
+## Undo and redo
+
+The diff system supports full undo/redo at the tool-call level:
+
+- **Undo** — Reverts all file changes from a specific tool call and restores the baseline to its prior state
+- **Redo** — Reapplies previously undone edits
+
+This is especially useful when the agent makes a series of changes and you want to roll back to a specific point.
+
+## Contributors
+
+The diff system tracks which contributor (agent chat session or user) is responsible for each change. In multi-agent scenarios, you can see which agent made which edit in the diff blame view.
+
+## Opening files in your IDE
+
+From the diff review page, click the IDE icon next to any file to open it directly in your preferred code editor. Configure your IDE in **Settings → Agent → General**.
+
+Supported IDEs:
+- Cursor
+- VS Code
+- VS Code Insiders
+- Zed
+- Windsurf
+- WebStorm

@@ -1,0 +1,52 @@
+---
+title: "Best practices"
+description: "Tips and techniques for getting the most out of the stagewise agent."
+---
+
+## Give specific instructions
+
+The agent performs best with clear, scoped requests. Instead of "make the page look better," try:
+
+- "Change the header background to blue and increase the font size to 24px"
+- "Add a loading spinner to the submit button while the form is submitting"
+- "Refactor the `UserCard` component to use Tailwind instead of inline styles"
+
+## Use DOM context selection
+
+Click on elements in the browser viewport to attach them as context. This gives the agent the exact HTML, CSS, and component information it needs to make targeted changes.
+
+<Tip>You can select multiple elements before sending a message. The agent sees all of them.</Tip>
+
+## Leverage workspace context
+
+The agent is more effective when it understands your project:
+
+1. **Generate `WORKSPACE.md`** — Go to **Settings → Skills & Context files** and click **Generate** for your workspace. This creates an auto-generated project analysis.
+2. **Write custom skills** — Add `.stagewise/skills/` folders with `SKILL.md` files to teach the agent project-specific patterns.
+3. **Use `@` mentions** — Reference files and tabs directly in your chat messages.
+
+## Review changes carefully
+
+The agent writes code changes to disk immediately, but all edits are tracked in the diff system:
+
+- **Accept** individual hunks you want to keep
+- **Reject** hunks to revert them to the baseline
+- **Undo/redo** entire tool calls if needed
+- Open the full **Diff Review** page for complex multi-file changes
+
+## Choose the right model
+
+Different models excel at different tasks:
+
+| Model | Best for |
+|-------|----------|
+| Claude Sonnet 4 | Everyday coding tasks, good balance of speed and quality |
+| Claude Opus 4 | Complex architectural decisions, large refactors |
+| GPT-4.1 | General-purpose coding, broad knowledge |
+| Gemini 2.5 Pro | Long-context tasks, large codebases |
+
+You can switch models at any time in **Settings → Models & Providers**.
+
+## Keep conversations focused
+
+Start a new chat for each distinct task. Long, multi-topic conversations can reduce agent accuracy. Use the **New Chat** shortcut to start fresh.
