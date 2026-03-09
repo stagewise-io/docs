@@ -17,7 +17,7 @@ When you connect a workspace, stagewise can auto-generate a `WORKSPACE.md` file 
 - Key files and their purposes
 - Architecture overview
 
-The agent reads this file automatically to understand your project structure.
+The agent reads this file automatically to understand your project structure. stagewise also updates this file automatically when it detects significant changes to your project.
 
 **Generating or updating WORKSPACE.md:**
 
@@ -38,9 +38,9 @@ An optional `AGENTS.md` file in your project root provides custom instructions t
 
 The agent respects `AGENTS.md` when it's present, but it's opt-in — you enable it per workspace in the Skills & Context settings.
 
-<Tip>
-  `AGENTS.md` is a shared format compatible with other AI coding tools. Skills in `.stagewise/skills/` take precedence when there's a conflict.
-</Tip>
+<Warning>
+  We recommend ignoring `AGENTS.md` as it tends to do more harm than good — the information can get outdated quickly and mislead the agent.
+</Warning>
 
 ## Skills
 
@@ -65,7 +65,7 @@ Skills are loaded from two places (in priority order):
 
 ### Creating a skill
 
-A `SKILL.md` file needs a name and description in its frontmatter:
+A `SKILL.md` file needs a name and description in its frontmatter. Skills follow the [Agent Skills Standard](https://agentskills.org):
 
 ```markdown
 ---
@@ -84,6 +84,3 @@ The `description` field tells the agent when to activate the skill. Be specific 
 
 In **Settings → Agent → Skills & Context files**, you can toggle individual skills on or off for each workspace. Disabled skills are ignored by the agent even if present on disk.
 
-### Plugin skills
-
-Installed plugins can also provide skills. These appear in the skills list alongside workspace skills and can be toggled independently.

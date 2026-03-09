@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "stagewise",
   "colors": {
-    "primary": "#7C3AED",
-    "light": "#A78BFA",
-    "dark": "#5B21B6"
+    "primary": "#275BFF",
+    "light": "#6698FF",
+    "dark": "#081ECB"
   },
   "favicon": "/favicon.png",
   "navigation": {
