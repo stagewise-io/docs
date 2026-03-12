@@ -4,15 +4,25 @@
   "name": "stagewise",
   "colors": {
     "primary": "#2559fe",
-    "light": "#4077ff",
-    "dark": "#204dda",
-    "background": {
-      "light": "#fdfcfc",
-      "dark": "#1e1e1d"
-    }
+    "light": "#fdfcfc",
+    "dark": "#1e1e1d"
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "GitHub",
+          "icon": "github",
+          "href": "https://github.com/stagewise-io/stagewise"
+        },
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://stagewise.io/socials/discord"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -62,21 +72,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "GitHub",
-          "href": "https://github.com/stagewise/stagewise",
-          "icon": "github"
-        },
-        {
-          "anchor": "Discord",
-          "href": "https://stagewise.io/socials/discord",
-          "icon": "discord"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
